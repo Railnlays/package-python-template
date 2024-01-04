@@ -7,10 +7,13 @@ on:
 env:
   PYTHON_VERSION: "3.12"
   POETRY_VERSION: "1.7.1"
+  PYLINT_THRESHOLD: "0"
 jobs:
   install-test-coverage:
     runs-on: ubuntu-latest
     steps:
+      - name: Create Project Folder Environment variable
+        run: echo "PROJECT-FOLDER=$(echo "${{ github.event.repository.name }}" | sed -e 's/package-python-//' -e 's/-/_/g')" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup python versions
@@ -23,3 +26,9 @@ jobs:
           poetry-version: ${{ env.POETRY_VERSION }}
       - name: Install Python dependencies
         run: poetry install
+      - name: Code quality
+        run: poetry run pylint --fail-under=${{ env.PYLINT_THRESHOLD }} **/*py
+      - name: Test & Generate Coverage Report
+        run: |
+          poetry run coverage run --source ${{ env.PROJECT_FOLDER }}/ -m pytest --junitxml=pytest.xml
+          poetry run coverage xml
