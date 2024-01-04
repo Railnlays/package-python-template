@@ -1,0 +1,12 @@
+name: CI - Workflow
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+jobs:
+  install-test-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print hola
+        run: echo "hola"
