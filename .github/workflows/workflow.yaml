@@ -20,4 +20,4 @@ jobs:
       - name: Install Poetry
         uses: abatilo/actions-poetry@v2.3.0
         with:
-          poetry-version ${{ env.POETRY-VERSION }}
+          poetry-version: ${{ env.POETRY_VERSION }}
