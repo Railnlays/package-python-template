@@ -4,13 +4,15 @@ on:
     branches: [master, main]
   pull_request:
     branches: [master, main]
+env:
+  PYTHON_VERSION: "3.12"
 jobs:
   install-test-coverage:
     runs-on: ubuntu-latest
     steps:
-      - name: ls
-        run: ls -la   
       - name: Checkout
         uses: actions/checkout@v4
-      - name: ls
-        run: ls -la
+      - name: Setup pythn versions
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
