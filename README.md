@@ -1,3 +1,1 @@
 # package-python-template
-
-cdsc
