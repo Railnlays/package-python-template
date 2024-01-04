@@ -32,9 +32,21 @@ jobs:
         run: |
           poetry run coverage run --source ${{ env.PROJECT_FOLDER }}/ -m pytest --junitxml=pytest.xml
           poetry run coverage xml
+  publish-in-pypi:
+    runs-on: ubuntu-latest
+    needs: [install-test-coverage]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup python versions
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v2.3.0
+        with:
+          poetry-version: ${{ env.POETRY_VERSION }}
       - name: Pypi Publish
-        if: success()
+        run: poetry publish --build
         env: 
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
-        working-directory: ./${{ env.PROJECT_FOLDER }}
-        run: poetry publish --build
