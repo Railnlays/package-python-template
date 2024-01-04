@@ -32,3 +32,9 @@ jobs:
         run: |
           poetry run coverage run --source ${{ env.PROJECT_FOLDER }}/ -m pytest --junitxml=pytest.xml
           poetry run coverage xml
+      - name: Pypi Publish
+        if: success()
+        env: 
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
+        working-directory: ./main
+        run: poetry publish --build
