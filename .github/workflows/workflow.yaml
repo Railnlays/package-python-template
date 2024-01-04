@@ -12,8 +12,8 @@ jobs:
   install-test-coverage:
     runs-on: ubuntu-latest
     steps:
-      - name: Create Project Folder Environment variable
-        run: echo "PROJECT-FOLDER=$(echo "${{ github.event.repository.name }}" | sed -e 's/package-python-//' -e 's/-/_/g')" >> $GITHUB_ENV
+      - name: Create Project Folder environment variable
+        run: echo "PROJECT_FOLDER=$(echo "${{ github.event.repository.name }}" | sed -e 's/package-python-//' -e 's/-/_/g')" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup python versions
