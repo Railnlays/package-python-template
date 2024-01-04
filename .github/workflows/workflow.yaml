@@ -6,13 +6,18 @@ on:
     branches: [master, main]
 env:
   PYTHON_VERSION: "3.12"
+  POETRY_VERSION: "1.7.1"
 jobs:
   install-test-coverage:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup pythn versions
+      - name: Setup python versions
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v2.3.0
+        with:
+          poetry-version ${{ env.POETRY-VERSION }}
