@@ -8,5 +8,9 @@ jobs:
   install-test-coverage:
     runs-on: ubuntu-latest
     steps:
-      - name: print hola
-        run: echo "hola"
+      - name: ls
+        run: ls -la   
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: ls
+        run: ls -la
