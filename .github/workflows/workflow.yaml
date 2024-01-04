@@ -36,5 +36,5 @@ jobs:
         if: success()
         env: 
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
-        working-directory: /$PROJECT_FOLDER
+        working-directory: ./${{ env.PROJECT_FOLDER }}
         run: poetry publish --build
