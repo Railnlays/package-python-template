@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [master, main]
 env:
-  PYTHON_VERSION: "3.12"
+  PYTHON_VERSION: "3.11"
   POETRY_VERSION: "1.7.1"
   PYLINT_THRESHOLD: "0"
   DOCKER_IMAGE_NAME: ${{ github.event.repository.name }}
