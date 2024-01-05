@@ -87,7 +87,7 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
-      - name: Build and Push to Google Container Registry
+      - name: Build and Push to Docker Hub
         uses: docker/build-push-action@v5
         with:
           context: ./
@@ -96,7 +96,10 @@ jobs:
           push: true
           cache-from: type=local,src=-tmp/.buildx-cache
           cache-to: type=local,dest=-tmp/.buildx-cache
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_TAG }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.PACKAGE_VERSION }}
           build-args: |
             POETRY_VERSION=${{ env.POETRY_VERSION }}
             PYTHON_VERSION=${{ env.PYTHON_VERSION }}
