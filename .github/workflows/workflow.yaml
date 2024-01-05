@@ -94,7 +94,7 @@ jobs:
           push: true
           cache-from: type=local,src=-tmp/.buildx-cache
           cache-to: type=local,dest=-tmp/.buildx-cache
-          tags: grc.io/${{ env.GCP_PROJECT }}/${{ env.DOCKER_IMAGE_NAME }}:latest, grc.io/${{ env.GCP_PROJECT }}/${{ env.DOCKER_IMAGE_NAME }}
+          tags: grc.io/${{ env.GCP_PROJECT }}/${{ env.DOCKER_IMAGE_NAME }}:latest
           build-args:
             POETRY_VERSION=${{ env.POETRY_VERSION }}
             PYTHON_VERSION=${{ env.PYTHON_VERSION }}
