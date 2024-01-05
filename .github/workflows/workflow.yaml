@@ -8,8 +8,8 @@ env:
   PYTHON_VERSION: "3.12"
   POETRY_VERSION: "1.7.1"
   PYLINT_THRESHOLD: "0"
-  GCP_PROJECT: "template"
-  DOCKER_IMAGE_NAME: "template"
+  DOCKER_IMAGE_NAME: ${{ github.event.repository.name }}
+  DOCKER_IMAGE_TAG: ${{ github.sha }}
 jobs:
   install-test-coverage:
     runs-on: ubuntu-latest
@@ -96,7 +96,7 @@ jobs:
           push: true
           cache-from: type=local,src=-tmp/.buildx-cache
           cache-to: type=local,dest=-tmp/.buildx-cache
-          tags: gcr.io/${{ env.GCP_PROJECT }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+          tags: ${{ env.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
           build-args:
             POETRY_VERSION=${{ env.POETRY_VERSION }}
             PYTHON_VERSION=${{ env.PYTHON_VERSION }}
