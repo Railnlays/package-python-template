@@ -7,7 +7,7 @@ on:
 env:
   PYTHON_VERSION: "3.12"
   POETRY_VERSION: "1.7.1"
-  PYLINT_THRESHOLD: "3"
+  PYLINT_THRESHOLD: "0"
 jobs:
   install-test-coverage:
     runs-on: ubuntu-latest
