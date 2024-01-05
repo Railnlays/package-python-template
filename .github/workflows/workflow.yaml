@@ -97,6 +97,6 @@ jobs:
           cache-from: type=local,src=-tmp/.buildx-cache
           cache-to: type=local,dest=-tmp/.buildx-cache
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
-          build-args:
+          build-args: |
             POETRY_VERSION=${{ env.POETRY_VERSION }}
             PYTHON_VERSION=${{ env.PYTHON_VERSION }}
