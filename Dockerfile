@@ -1,6 +1,7 @@
 ARG PYTHON_VERSION
+ARG DEBIAN_VERSION
 
-FROM python:$PYTHON_VERSION-slim-buster as builder
+FROM python:$PYTHON_VERSION-slim-$DEBIAN_VERSION as builder
 
 ARG POETRY_VERSION
 
@@ -18,7 +19,7 @@ COPY . .
 
 RUN . /venv/bin/activate && poetry build
 
-FROM python:$PYTHON_VERSION-slim-buster
+FROM python:$PYTHON_VERSION-slim-$DEBIAN_VERSION
 
 WORKDIR /app
 

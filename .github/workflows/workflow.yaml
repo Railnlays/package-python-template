@@ -10,6 +10,7 @@ env:
   PYLINT_THRESHOLD: "0"
   DOCKER_IMAGE_NAME: ${{ github.event.repository.name }}
   DOCKER_IMAGE_TAG: ${{ github.sha }}
+  DEBIAN_VERSION: "bookworn"
 jobs:
   install-test-coverage:
     runs-on: ubuntu-latest
@@ -103,3 +104,4 @@ jobs:
           build-args: |
             POETRY_VERSION=${{ env.POETRY_VERSION }}
             PYTHON_VERSION=${{ env.PYTHON_VERSION }}
+            DEBIAN_VERSION=${{ env.DEBIAN_VERSION }}
